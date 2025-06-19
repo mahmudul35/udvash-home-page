@@ -1,18 +1,18 @@
- const btn = document.getElementById("btn");
-  const navLinks = document.getElementById("navLinks");
-  const icon = document.getElementById("menu-icon");
+const btn = document.getElementById("btn");
+const navLinks = document.getElementById("navLinks");
+const icon = document.getElementById("menu-icon");
 
-  btn.addEventListener("click", function () {
-    navLinks.classList.toggle("active");
-    
-    if (navLinks.classList.contains("active")) {
-      icon.classList.remove("fa-bars");
-      icon.classList.add("fa-xmark");
-    } else {
-      icon.classList.remove("fa-xmark");
-      icon.classList.add("fa-bars");
-    }
-  });
+btn.addEventListener("click", function () {
+  navLinks.classList.toggle("active");
+
+  if (navLinks.classList.contains("active")) {
+    icon.classList.remove("fa-bars");
+    icon.classList.add("fa-xmark");
+  } else {
+    icon.classList.remove("fa-xmark");
+    icon.classList.add("fa-bars");
+  }
+});
 // hero slider start here
 const slider = document.getElementById("slider");
 const slides = document.querySelectorAll(".slide");
@@ -32,7 +32,7 @@ slides.forEach((_, i) => {
 });
 
 const indicators = indicatorsContainer.children;
-console.log(indicators)
+console.log(indicators);
 
 function updateSlider() {
   slider.style.transform = `translateX(-${index * 100}%)`;
@@ -59,9 +59,9 @@ updateSlider();
 // hero slider end here
 
 // success slider start here
-const successSlider=document.getElementById("successSlider")
-const successSlide=document.querySelectorAll(".successStory")
-const successIndicatorContainer=document.getElementById("success-indicators")
+const successSlider = document.getElementById("successSlider");
+const successSlide = document.querySelectorAll(".successStory");
+const successIndicatorContainer = document.getElementById("success-indicators");
 
 let successIndex = 0;
 
@@ -101,41 +101,59 @@ function resetSuccessInterval() {
 updateSuccessSlider();
 // success slider end here
 
-
 // iframe video start here
-function playVideo(){
-  const thumbnail=document.getElementById("thumbnail")
-  const playBtn=document.getElementById("play-btn")
-  const iframe=document.getElementById("video")
-  document.getElementById("play-btn").addEventListener("click",()=>{
-    iframe.src="https://www.youtube.com/embed/5GKzR0rjFvM?si=TCBZWBl2KxsajE2e"
-    iframe.style.display='block'
-    thumbnail.style.display="none"
-    playBtn.style.display="none"
-  })
+function playVideo() {
+  const thumbnail = document.getElementById("thumbnail");
+  const playBtn = document.getElementById("play-btn");
+  const iframe = document.getElementById("video");
+  document.getElementById("play-btn").addEventListener("click", () => {
+    iframe.src =
+      "https://www.youtube.com/embed/5GKzR0rjFvM?si=TCBZWBl2KxsajE2e";
+    iframe.style.display = "block";
+    thumbnail.style.display = "none";
+    playBtn.style.display = "none";
+  });
 }
-playVideo()
+playVideo();
+
+// aro dekhun button functionality
+
+document.getElementById("aro-dekun-btn").addEventListener("click", () => {
+  console.log("Button clicked");
+
+  const hiddenCard = document.querySelectorAll(".testomonial-card.hidden");
+  console.log(hiddenCard);
+  const showCard = 3;
+  for (let i = 0; i < showCard && i < hiddenCard.length; i++) {
+    hiddenCard[i].classList.remove("hidden");
+  }
+
+  console.log(document.querySelectorAll(".testomonial-card.hidden"));
+  if (document.querySelectorAll(".testomonial-card.hidden").length == 0) {
+    document.getElementById("aro-dekun-btn").classList.add("hidden");
+  }
+});
 
 // count
-  document.addEventListener("DOMContentLoaded", function () {
-  const duration = 2000; 
+document.addEventListener("DOMContentLoaded", function () {
+  const duration = 2000;
   const counters = document.querySelectorAll(".counter");
 
-  counters.forEach(counter => {
+  counters.forEach((counter) => {
     const target = +counter.getAttribute("data-target");
-    console.log(target)
+    console.log(target);
     const startTime = performance.now();
 
     function update(currentTime) {
       const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1); 
+      const progress = Math.min(elapsed / duration, 1);
       const currentValue = Math.floor(progress * target);
-      counter.innerText = currentValue+ "+";
+      counter.innerText = currentValue + "+";
 
       if (progress < 1) {
         requestAnimationFrame(update);
       } else {
-        counter.innerText = target + "+"; 
+        counter.innerText = target + "+";
       }
     }
 
